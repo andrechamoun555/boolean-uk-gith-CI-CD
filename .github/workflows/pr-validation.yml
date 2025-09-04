@@ -23,7 +23,7 @@ jobs:
 
       # needed on GitHub Linux runners so ./gradlew can run
       - name: Make Gradle executable
-        run: chmod +x gradlew
+        run: chmod +x ./gradlew
 
       - name: Run Tests
         run: ./gradlew --no-daemon test
