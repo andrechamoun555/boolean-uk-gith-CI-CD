@@ -19,16 +19,24 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
+          cache: gradle
+
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew build
 
       - name: Run Tests
-        run: ./gradlew test
+        run: ./gradlew --no-daemon test
 
       - name: Build Application
-        run: ./gradlew bootJar
+        run: ./gradlew --no-daemon bootJar
 
+      # “Deploy” placeholder exactly like the lesson’s example
       - name: Create Release
         if: github.ref == 'refs/heads/main'
         run: |
           VERSION="1.0.${{ github.run_number }}"
-          echo "Built version: $VERSION" 
+          echo "Built version: $VERSION"
           echo "Ready for deployment!"
