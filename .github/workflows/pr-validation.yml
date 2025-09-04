@@ -21,9 +21,11 @@ jobs:
           distribution: 'temurin'
           cache: gradle
 
-      # needed on GitHub Linux runners so ./gradlew can run
-      - name: Make Gradle executable
+      - name: Make gradlew executable
         run: chmod +x ./gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew build
 
       - name: Run Tests
         run: ./gradlew --no-daemon test
